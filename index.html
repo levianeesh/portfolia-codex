@@ -1,0 +1,1569 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Aneesh Ghosh, Full Stack Developer portfolio."
+    />
+    <title>Aneesh Ghosh | Full Stack Developer</title>
+    <style>
+      :root {
+        --bg: #090b14;
+        --bg-2: #0f1324;
+        --panel: rgba(255, 255, 255, 0.075);
+        --panel-strong: rgba(255, 255, 255, 0.12);
+        --text: #f6f7fb;
+        --muted: #b8bfd5;
+        --soft: #7f8aa8;
+        --line: rgba(255, 255, 255, 0.13);
+        --purple: #a879ff;
+        --cyan: #42d4ff;
+        --green: #72f2b5;
+        --rose: #ff6f91;
+        --yellow: #ffd166;
+        --shadow: 0 24px 90px rgba(0, 0, 0, 0.36);
+        --radius: 8px;
+        --max: 1160px;
+        --font:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        min-height: 100vh;
+        background:
+          radial-gradient(
+            circle at 20% 0%,
+            rgba(168, 121, 255, 0.16),
+            transparent 28rem
+          ),
+          radial-gradient(
+            circle at 84% 18%,
+            rgba(66, 212, 255, 0.11),
+            transparent 24rem
+          ),
+          linear-gradient(135deg, var(--bg) 0%, #101321 54%, #080a12 100%);
+        color: var(--text);
+        font-family: var(--font);
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        opacity: 0.32;
+        background-image:
+          linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+          linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0.045) 1px,
+            transparent 1px
+          );
+        background-size: 72px 72px;
+        mask-image: linear-gradient(to bottom, black, transparent 78%);
+        z-index: -2;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      button,
+      input,
+      textarea {
+        font: inherit;
+      }
+
+      .wrap {
+        width: min(100% - 40px, var(--max));
+        margin: 0 auto;
+      }
+
+      .site-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 50;
+        border-bottom: 1px solid transparent;
+        transition:
+          background 220ms ease,
+          border-color 220ms ease,
+          backdrop-filter 220ms ease;
+      }
+
+      .site-header.scrolled {
+        background: rgba(9, 11, 20, 0.78);
+        border-color: var(--line);
+        backdrop-filter: blur(18px);
+      }
+
+      .nav {
+        height: 74px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 800;
+        letter-spacing: 0;
+      }
+
+      .brand-mark {
+        width: 42px;
+        height: 42px;
+        display: grid;
+        place-items: center;
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        border-radius: var(--radius);
+        background: linear-gradient(
+          135deg,
+          rgba(168, 121, 255, 0.92),
+          rgba(66, 212, 255, 0.86)
+        );
+        box-shadow: 0 14px 35px rgba(66, 212, 255, 0.18);
+        color: #070914;
+        font-weight: 900;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        list-style: none;
+      }
+
+      .nav-links a {
+        display: inline-flex;
+        min-height: 40px;
+        align-items: center;
+        padding: 0 14px;
+        border-radius: var(--radius);
+        color: var(--muted);
+        font-size: 0.94rem;
+        transition:
+          color 180ms ease,
+          background 180ms ease;
+      }
+
+      .nav-links a:hover,
+      .nav-links a:focus-visible {
+        color: var(--text);
+        background: rgba(255, 255, 255, 0.08);
+        outline: none;
+      }
+
+      .menu-toggle {
+        display: none;
+        width: 42px;
+        height: 42px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: rgba(255, 255, 255, 0.07);
+        color: var(--text);
+        cursor: pointer;
+      }
+
+      .menu-toggle span {
+        display: block;
+        width: 18px;
+        height: 2px;
+        margin: 4px auto;
+        background: currentColor;
+        transition:
+          transform 180ms ease,
+          opacity 180ms ease;
+      }
+
+      .hero {
+        position: relative;
+        min-height: 100vh;
+        display: grid;
+        align-items: center;
+        padding: 112px 0 56px;
+        isolation: isolate;
+      }
+
+      #hero-canvas {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.78;
+        z-index: -1;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.78fr);
+        align-items: center;
+        gap: clamp(32px, 5vw, 76px);
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--green);
+        font-weight: 700;
+        font-size: 0.84rem;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+      }
+
+      .eyebrow::before {
+        content: "";
+        width: 9px;
+        height: 9px;
+        border-radius: 999px;
+        background: var(--green);
+        box-shadow: 0 0 24px var(--green);
+      }
+
+      h1 {
+        margin-top: 20px;
+        max-width: 830px;
+        font-size: clamp(3.1rem, 8vw, 7.35rem);
+        line-height: 0.9;
+        letter-spacing: 0;
+      }
+
+      .gradient-text {
+        color: transparent;
+        background: linear-gradient(
+          90deg,
+          #ffffff,
+          #bca2ff 38%,
+          #6ee7ff 73%,
+          #f9fbff
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+      }
+
+      .lead {
+        max-width: 650px;
+        margin-top: 28px;
+        color: var(--muted);
+        font-size: clamp(1.05rem, 2vw, 1.28rem);
+      }
+
+      .hero-actions {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 14px;
+        margin-top: 34px;
+      }
+
+      .btn {
+        min-height: 48px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: 0 18px;
+        color: var(--text);
+        background: rgba(255, 255, 255, 0.07);
+        transition:
+          transform 180ms ease,
+          border-color 180ms ease,
+          background 180ms ease,
+          box-shadow 180ms ease;
+      }
+
+      .btn:hover,
+      .btn:focus-visible {
+        transform: translateY(-2px);
+        border-color: rgba(255, 255, 255, 0.3);
+        background: rgba(255, 255, 255, 0.12);
+        outline: none;
+      }
+
+      .btn.primary {
+        border-color: transparent;
+        color: #070914;
+        font-weight: 800;
+        background: linear-gradient(135deg, var(--purple), var(--cyan));
+        box-shadow: 0 18px 48px rgba(66, 212, 255, 0.22);
+      }
+
+      .hero-panel {
+        position: relative;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.12),
+          rgba(255, 255, 255, 0.055)
+        );
+        box-shadow: var(--shadow);
+        overflow: hidden;
+      }
+
+      .hero-panel::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          120deg,
+          transparent,
+          rgba(255, 255, 255, 0.16),
+          transparent
+        );
+        transform: translateX(-80%);
+        animation: sheen 6s ease-in-out infinite;
+      }
+
+      @keyframes sheen {
+        0%,
+        42% {
+          transform: translateX(-90%);
+        }
+        68%,
+        100% {
+          transform: translateX(90%);
+        }
+      }
+
+      .profile-card {
+        position: relative;
+        padding: 24px;
+      }
+
+      .portrait {
+        min-height: 350px;
+        display: grid;
+        place-items: center;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: var(--radius);
+        background:
+          radial-gradient(
+            circle at 50% 28%,
+            rgba(168, 121, 255, 0.28),
+            transparent 9rem
+          ),
+          linear-gradient(
+            145deg,
+            rgba(66, 212, 255, 0.18),
+            rgba(255, 255, 255, 0.04) 42%,
+            rgba(168, 121, 255, 0.18)
+          );
+      }
+
+      .portrait-inner {
+        width: min(72%, 260px);
+        aspect-ratio: 1;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        color: rgba(255, 255, 255, 0.94);
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        background:
+          linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.18),
+            rgba(255, 255, 255, 0.04)
+          ),
+          linear-gradient(
+            135deg,
+            rgba(168, 121, 255, 0.42),
+            rgba(66, 212, 255, 0.28)
+          );
+        box-shadow:
+          inset 0 0 80px rgba(255, 255, 255, 0.09),
+          0 34px 70px rgba(0, 0, 0, 0.24);
+        font-size: clamp(4.4rem, 10vw, 7rem);
+        font-weight: 900;
+      }
+
+      .status-card {
+        display: grid;
+        gap: 14px;
+        margin-top: 18px;
+      }
+
+      .status-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: var(--radius);
+        background: rgba(0, 0, 0, 0.14);
+        padding: 14px;
+      }
+
+      .status-row span:first-child {
+        color: var(--soft);
+        font-size: 0.86rem;
+      }
+
+      .status-row span:last-child {
+        color: var(--text);
+        font-weight: 700;
+        text-align: right;
+      }
+
+      section {
+        padding: 94px 0;
+      }
+
+      .section-head {
+        display: grid;
+        grid-template-columns: 0.78fr 1fr;
+        gap: 34px;
+        align-items: end;
+        margin-bottom: 38px;
+      }
+
+      .kicker {
+        color: var(--cyan);
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        font-size: 0.78rem;
+      }
+
+      h2 {
+        margin-top: 10px;
+        font-size: clamp(2rem, 4vw, 3.4rem);
+        line-height: 1;
+        letter-spacing: 0;
+      }
+
+      .section-head p,
+      .muted {
+        color: var(--muted);
+      }
+
+      .about-grid {
+        display: grid;
+        grid-template-columns: 1fr 0.85fr;
+        gap: 22px;
+      }
+
+      .glass {
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.09),
+          rgba(255, 255, 255, 0.045)
+        );
+        box-shadow: 0 16px 50px rgba(0, 0, 0, 0.2);
+      }
+
+      .about-copy {
+        padding: clamp(24px, 4vw, 36px);
+      }
+
+      .about-copy p + p {
+        margin-top: 16px;
+      }
+
+      .metric-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+      }
+
+      .metric {
+        min-height: 142px;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        overflow: hidden;
+      }
+
+      .metric strong {
+        font-size: clamp(2rem, 4vw, 3rem);
+        line-height: 1;
+      }
+
+      .metric span {
+        color: var(--muted);
+        font-size: 0.92rem;
+      }
+
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+      }
+
+      .skill-card {
+        padding: 20px;
+        min-height: 166px;
+        display: grid;
+        align-content: space-between;
+        transition:
+          transform 180ms ease,
+          border-color 180ms ease,
+          background 180ms ease;
+      }
+
+      .skill-card:hover {
+        transform: translateY(-4px);
+        border-color: rgba(255, 255, 255, 0.24);
+        background: rgba(255, 255, 255, 0.09);
+      }
+
+      .skill-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+      }
+
+      .skill-icon {
+        width: 42px;
+        height: 42px;
+        display: grid;
+        place-items: center;
+        border-radius: var(--radius);
+        background: rgba(255, 255, 255, 0.09);
+        color: var(--cyan);
+        font-weight: 900;
+      }
+
+      .skill-card h3 {
+        font-size: 1.05rem;
+        margin-top: 16px;
+      }
+
+      .skill-card p {
+        margin-top: 6px;
+        color: var(--muted);
+        font-size: 0.94rem;
+      }
+
+      .bar {
+        height: 7px;
+        margin-top: 18px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.1);
+        overflow: hidden;
+      }
+
+      .bar span {
+        display: block;
+        width: 0;
+        height: 100%;
+        border-radius: inherit;
+        background: linear-gradient(
+          90deg,
+          var(--purple),
+          var(--cyan),
+          var(--green)
+        );
+        transition: width 1100ms cubic-bezier(0.2, 0.9, 0.2, 1);
+      }
+
+      .timeline {
+        position: relative;
+        display: grid;
+        gap: 16px;
+      }
+
+      .timeline::before {
+        content: "";
+        position: absolute;
+        left: 21px;
+        top: 6px;
+        bottom: 6px;
+        width: 1px;
+        background: linear-gradient(var(--cyan), rgba(255, 255, 255, 0.1));
+      }
+
+      .timeline-item {
+        position: relative;
+        display: grid;
+        grid-template-columns: 44px 1fr;
+        gap: 18px;
+      }
+
+      .dot {
+        width: 43px;
+        height: 43px;
+        display: grid;
+        place-items: center;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        border-radius: 50%;
+        background: rgba(9, 11, 20, 0.95);
+        color: var(--cyan);
+        z-index: 1;
+        font-weight: 900;
+      }
+
+      .timeline-content {
+        padding: 22px;
+      }
+
+      .item-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        align-items: center;
+        color: var(--soft);
+        font-size: 0.9rem;
+        margin-bottom: 8px;
+      }
+
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        min-height: 28px;
+        padding: 0 10px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 999px;
+        color: var(--muted);
+        background: rgba(255, 255, 255, 0.055);
+        font-size: 0.82rem;
+      }
+
+      .timeline-content h3,
+      .project h3 {
+        font-size: 1.18rem;
+        line-height: 1.25;
+      }
+
+      .timeline-content p,
+      .project p {
+        color: var(--muted);
+        margin-top: 10px;
+      }
+
+      .tag-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 16px;
+        list-style: none;
+      }
+
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+      }
+
+      .project {
+        position: relative;
+        min-height: 260px;
+        padding: 24px;
+        overflow: hidden;
+      }
+
+      .project::after {
+        content: "";
+        position: absolute;
+        right: -44px;
+        top: -44px;
+        width: 128px;
+        height: 128px;
+        border-radius: 36px;
+        rotate: 18deg;
+        background: linear-gradient(
+          135deg,
+          rgba(168, 121, 255, 0.22),
+          rgba(66, 212, 255, 0.16)
+        );
+      }
+
+      .profile-photo {
+        width: min(72%, 260px);
+        aspect-ratio: 1;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        box-shadow: 0 34px 70px rgba(0, 0, 0, 0.24);
+      }
+
+      .project-index {
+        display: inline-grid;
+        place-items: center;
+        width: 42px;
+        height: 42px;
+        margin-bottom: 32px;
+        border-radius: var(--radius);
+        background: rgba(255, 255, 255, 0.09);
+        color: var(--green);
+        font-weight: 900;
+      }
+
+      .education-grid {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 16px;
+      }
+
+      .edu-card,
+      .cert-card {
+        padding: 24px;
+      }
+
+      .edu-list,
+      .cert-list {
+        display: grid;
+        gap: 14px;
+        margin-top: 22px;
+        list-style: none;
+      }
+
+      .edu-list li,
+      .cert-list li {
+        padding: 16px;
+        border-radius: var(--radius);
+        background: rgba(255, 255, 255, 0.055);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .edu-list strong,
+      .cert-list strong {
+        display: block;
+        color: var(--text);
+      }
+
+      .edu-list span,
+      .cert-list span {
+        display: block;
+        color: var(--muted);
+        margin-top: 4px;
+      }
+
+      .contact {
+        padding-bottom: 40px;
+      }
+
+      .contact-panel {
+        display: grid;
+        grid-template-columns: 0.95fr 1.05fr;
+        gap: 24px;
+        padding: clamp(24px, 5vw, 42px);
+        overflow: hidden;
+        position: relative;
+      }
+
+      .contact-panel::before {
+        content: "";
+        position: absolute;
+        inset: auto 0 0 0;
+        height: 4px;
+        background: linear-gradient(
+          90deg,
+          var(--purple),
+          var(--cyan),
+          var(--green),
+          var(--rose)
+        );
+      }
+
+      .contact-links {
+        display: grid;
+        gap: 12px;
+        list-style: none;
+      }
+
+      .contact-links a {
+        min-height: 56px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: var(--radius);
+        background: rgba(255, 255, 255, 0.055);
+        padding: 0 16px;
+        transition:
+          transform 180ms ease,
+          background 180ms ease,
+          border-color 180ms ease;
+      }
+
+      .contact-links a:hover,
+      .contact-links a:focus-visible {
+        transform: translateX(4px);
+        background: rgba(255, 255, 255, 0.09);
+        border-color: rgba(255, 255, 255, 0.22);
+        outline: none;
+      }
+
+      footer {
+        padding: 28px 0 42px;
+        color: var(--soft);
+        text-align: center;
+        font-size: 0.92rem;
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(22px);
+        transition:
+          opacity 700ms ease,
+          transform 700ms ease;
+      }
+
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      @media (max-width: 920px) {
+        .hero-grid,
+        .about-grid,
+        .section-head,
+        .education-grid,
+        .contact-panel {
+          grid-template-columns: 1fr;
+        }
+
+        .hero {
+          min-height: auto;
+        }
+
+        .hero-panel {
+          max-width: 520px;
+        }
+
+        .skills-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 720px) {
+        .wrap {
+          width: min(100% - 28px, var(--max));
+        }
+
+        .menu-toggle {
+          display: block;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+          transform: translateY(6px) rotate(45deg);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+          opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+          transform: translateY(-6px) rotate(-45deg);
+        }
+
+        .nav-links {
+          position: absolute;
+          left: 14px;
+          right: 14px;
+          top: 78px;
+          display: grid;
+          gap: 4px;
+          padding: 12px;
+          border: 1px solid var(--line);
+          border-radius: var(--radius);
+          background: rgba(9, 11, 20, 0.94);
+          backdrop-filter: blur(18px);
+          box-shadow: var(--shadow);
+          transform: translateY(-10px);
+          opacity: 0;
+          pointer-events: none;
+          transition:
+            opacity 180ms ease,
+            transform 180ms ease;
+        }
+
+        .nav-links.open {
+          opacity: 1;
+          pointer-events: auto;
+          transform: translateY(0);
+        }
+
+        .nav-links a {
+          justify-content: center;
+        }
+
+        .hero {
+          padding-top: 110px;
+        }
+
+        .portrait {
+          min-height: 280px;
+        }
+
+        section {
+          padding: 70px 0;
+        }
+
+        .metric-grid,
+        .skills-grid,
+        .projects-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .timeline::before {
+          left: 17px;
+        }
+
+        .timeline-item {
+          grid-template-columns: 36px 1fr;
+          gap: 12px;
+        }
+
+        .dot {
+          width: 35px;
+          height: 35px;
+          font-size: 0.82rem;
+        }
+
+        .timeline-content,
+        .project,
+        .edu-card,
+        .cert-card {
+          padding: 18px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 1ms !important;
+          scroll-behavior: auto !important;
+          transition-duration: 1ms !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header" id="top">
+      <nav class="nav wrap" aria-label="Primary navigation">
+        <a class="brand" href="#top" aria-label="Aneesh Ghosh home">
+          <span class="brand-mark">AG</span>
+          <span>Aneesh Ghosh</span>
+        </a>
+        <button
+          class="menu-toggle"
+          type="button"
+          aria-label="Open menu"
+          aria-expanded="false"
+        >
+          <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#education">Education</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <canvas id="hero-canvas" aria-hidden="true"></canvas>
+        <div class="wrap hero-grid">
+          <div class="hero-copy reveal">
+            <span class="eyebrow">Full Stack Developer in Kolkata</span>
+            <h1>
+              Aneesh Ghosh<br /><span class="gradient-text"
+                >builds digital experiences that matter.</span
+              >
+            </h1>
+            <p class="lead">
+              A solutions-oriented developer focused on production-ready
+              backends, responsive interfaces, and practical software that turns
+              ideas into dependable user experiences.
+            </p>
+            <div class="hero-actions">
+              <a class="btn primary" href="#projects">View Projects</a>
+              <a class="btn" href="mailto:aneeshghosh80@gmail.com"
+                >Contact Me</a
+              >
+            </div>
+          </div>
+          <aside class="hero-panel reveal" aria-label="Profile summary">
+            <div class="profile-card">
+              <div class="portrait">
+                <img class="profile-photo" src="Mypic.jpg" alt="Aneesh Ghosh" />
+              </div>
+              <div class="status-card">
+                <div class="status-row">
+                  <span>Core stack</span>
+                  <span>React, Node.js, MongoDB</span>
+                </div>
+                <div class="status-row">
+                  <span>Focus</span>
+                  <span>APIs, Auth, UI</span>
+                </div>
+                <div class="status-row">
+                  <span>Location</span>
+                  <span>Kolkata, India</span>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section id="about">
+        <div class="wrap">
+          <div class="section-head reveal">
+            <div>
+              <span class="kicker">About Me</span>
+              <h2>Resourceful, adaptable, and built for project ownership.</h2>
+            </div>
+            <p>
+              I combine full stack engineering practice with a strong academic
+              foundation in Information Technology. My resume highlights
+              backend-heavy project work, collaborative problem solving, and a
+              steady habit of improving through coding challenges and
+              certifications.
+            </p>
+          </div>
+          <div class="about-grid">
+            <div class="about-copy glass reveal">
+              <p>
+                I am Aneesh Ghosh, a Full Stack Developer from Kolkata with
+                hands-on experience building REST APIs, authentication systems,
+                database-backed applications, responsive websites, and machine
+                learning prototypes.
+              </p>
+              <p>
+                My work spans Node.js, Express, MongoDB, React, JavaScript,
+                TypeScript, Python, Java, C++, SQL, Git/GitHub, Postman, and
+                Android Studio. I enjoy turning ambiguous problems into
+                structured, testable, and maintainable software.
+              </p>
+            </div>
+            <div class="metric-grid reveal">
+              <div class="metric glass">
+                <strong>8.59</strong>
+                <span>B.Tech IT CGPA at Narula Institute of Technology</span>
+              </div>
+              <div class="metric glass">
+                <strong>4</strong>
+                <span>Featured academic and independent projects</span>
+              </div>
+              <div class="metric glass">
+                <strong>90.3%</strong>
+                <span>ICSE Class 10 result</span>
+              </div>
+              <div class="metric glass">
+                <strong>88%</strong>
+                <span>ISC Class 12 result</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="skills">
+        <div class="wrap">
+          <div class="section-head reveal">
+            <div>
+              <span class="kicker">Skills</span>
+              <h2>Modern web fundamentals with backend depth.</h2>
+            </div>
+            <p>
+              Built from the resume skill set, grouped into areas that map
+              cleanly to real product work: frontend, backend, databases,
+              programming foundations, and collaboration tools.
+            </p>
+          </div>
+          <div class="skills-grid">
+            <article class="skill-card glass reveal" data-skill="88">
+              <div class="skill-top">
+                <span class="skill-icon">R</span><span>88%</span>
+              </div>
+              <h3>React and UI Engineering</h3>
+              <p>
+                Responsive interfaces with HTML, CSS, JavaScript, TypeScript,
+                and React.
+              </p>
+              <div class="bar"><span></span></div>
+            </article>
+            <article class="skill-card glass reveal" data-skill="90">
+              <div class="skill-top">
+                <span class="skill-icon">N</span><span>90%</span>
+              </div>
+              <h3>Node.js Backend APIs</h3>
+              <p>
+                Express services, REST architecture, JWT authentication,
+                uploads, and RBAC.
+              </p>
+              <div class="bar"><span></span></div>
+            </article>
+            <article class="skill-card glass reveal" data-skill="84">
+              <div class="skill-top">
+                <span class="skill-icon">DB</span><span>84%</span>
+              </div>
+              <h3>Databases</h3>
+              <p>
+                MongoDB and SQL for application data modeling and persistence.
+              </p>
+              <div class="bar"><span></span></div>
+            </article>
+            <article class="skill-card glass reveal" data-skill="86">
+              <div class="skill-top">
+                <span class="skill-icon">DS</span><span>86%</span>
+              </div>
+              <h3>DSA and Problem Solving</h3>
+              <p>
+                Competitive coding practice across LeetCode and GeeksForGeeks.
+              </p>
+              <div class="bar"><span></span></div>
+            </article>
+            <article class="skill-card glass reveal" data-skill="82">
+              <div class="skill-top">
+                <span class="skill-icon">PY</span><span>82%</span>
+              </div>
+              <h3>Programming Languages</h3>
+              <p>C, C++, Java, Python, JavaScript, and TypeScript.</p>
+              <div class="bar"><span></span></div>
+            </article>
+            <article class="skill-card glass reveal" data-skill="80">
+              <div class="skill-top">
+                <span class="skill-icon">G</span><span>80%</span>
+              </div>
+              <h3>Developer Tools</h3>
+              <p>
+                Git/GitHub, Postman, Android Studio, teamwork, and adaptability.
+              </p>
+              <div class="bar"><span></span></div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="experience">
+        <div class="wrap">
+          <div class="section-head reveal">
+            <div>
+              <span class="kicker">Experience</span>
+              <h2>Project-led development experience.</h2>
+            </div>
+            <p>
+              The resume does not list formal company employment, so this
+              section presents verified development experience through academic
+              projects, certifications, coding competitions, and applied
+              software practice.
+            </p>
+          </div>
+          <div class="timeline">
+            <article class="timeline-item reveal">
+              <div class="dot">01</div>
+              <div class="timeline-content glass">
+                <div class="item-meta">
+                  <span class="pill">Full Stack Development</span
+                  ><span>Academic and independent projects</span>
+                </div>
+                <h3>Backend-focused product engineering</h3>
+                <p>
+                  Designed backend systems for video streaming and project
+                  management concepts, including scalable REST APIs, secure
+                  authentication, file upload workflows, role-based access
+                  control, tasks, subtasks, and notes.
+                </p>
+              </div>
+            </article>
+            <article class="timeline-item reveal">
+              <div class="dot">02</div>
+              <div class="timeline-content glass">
+                <div class="item-meta">
+                  <span class="pill">Problem Solving</span
+                  ><span>Competitions and DSA practice</span>
+                </div>
+                <h3>Coding competition and DSA growth</h3>
+                <p>
+                  Won intra-college coding problem-solving competitions and
+                  actively solves DSA problems on LeetCode and GeeksForGeeks.
+                </p>
+              </div>
+            </article>
+            <article class="timeline-item reveal">
+              <div class="dot">03</div>
+              <div class="timeline-content glass">
+                <div class="item-meta">
+                  <span class="pill">Certifications</span
+                  ><span>SAP, NPTEL</span>
+                </div>
+                <h3>
+                  Continuous learning across enterprise and CS fundamentals
+                </h3>
+                <p>
+                  Completed SAP S/4HANA Development Program and NPTEL coursework
+                  in Programming in Java, E-Business, and Introduction to
+                  Machine Learning.
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects">
+        <div class="wrap">
+          <div class="section-head reveal">
+            <div>
+              <span class="kicker">Projects</span>
+              <h2>Selected work from the resume.</h2>
+            </div>
+            <p>
+              Each project shows a different layer of Aneesh's capability, from
+              API engineering and authentication to deep learning and
+              browser-based interfaces.
+            </p>
+          </div>
+          <div class="projects-grid">
+            <article class="project glass reveal">
+              <span class="project-index">01</span>
+              <h3>VideoTube</h3>
+              <p>
+                Built a production-ready backend for a YouTube-style video
+                platform using Node.js, Express, MongoDB, JWT authentication,
+                file upload handling, and scalable REST APIs.
+              </p>
+              <ul class="tag-list">
+                <li class="pill">Node.js</li>
+                <li class="pill">Express</li>
+                <li class="pill">MongoDB</li>
+                <li class="pill">JWT</li>
+              </ul>
+            </article>
+            <article class="project glass reveal">
+              <span class="project-index">02</span>
+              <h3>Project Management Application</h3>
+              <p>
+                Built a scalable backend API featuring role-based access
+                control, task management, subtasks, project notes, and secure
+                authentication using JWT.
+              </p>
+              <ul class="tag-list">
+                <li class="pill">RBAC</li>
+                <li class="pill">REST API</li>
+                <li class="pill">Authentication</li>
+                <li class="pill">Node.js</li>
+              </ul>
+            </article>
+            <article class="project glass reveal">
+              <span class="project-index">03</span>
+              <h3>Oil Spill Detection Model</h3>
+              <p>
+                Developed an oil spill detection system using deep learning
+                segmentation models, including U-Net and DeepLabV3+, achieving
+                robust performance with limited training data.
+              </p>
+              <ul class="tag-list">
+                <li class="pill">Python</li>
+                <li class="pill">Deep Learning</li>
+                <li class="pill">U-Net</li>
+                <li class="pill">DeepLabV3+</li>
+              </ul>
+            </article>
+            <article class="project glass reveal">
+              <span class="project-index">04</span>
+              <h3>Simple Quiz Website</h3>
+              <p>
+                Built an interactive quiz web application with dynamic scoring,
+                question rendering, responsive UI, and clean browser-native
+                JavaScript behavior.
+              </p>
+              <ul class="tag-list">
+                <li class="pill">HTML</li>
+                <li class="pill">CSS</li>
+                <li class="pill">JavaScript</li>
+                <li class="pill">Responsive UI</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="education">
+        <div class="wrap">
+          <div class="section-head reveal">
+            <div>
+              <span class="kicker">Education</span>
+              <h2>Academic foundation and credentials.</h2>
+            </div>
+            <p>
+              Information Technology training supported by strong school results
+              and certifications across enterprise systems, Java, e-business,
+              and machine learning.
+            </p>
+          </div>
+          <div class="education-grid">
+            <article class="edu-card glass reveal">
+              <h3>Education</h3>
+              <ul class="edu-list">
+                <li>
+                  <strong>B.Tech in Information Technology</strong>
+                  <span>Narula Institute of Technology | CGPA: 8.59</span>
+                </li>
+                <li>
+                  <strong>Class 12, ISC</strong>
+                  <span>Tribeni Tissues Vidyapith | Percentage: 88</span>
+                </li>
+                <li>
+                  <strong>Class 10, ICSE</strong>
+                  <span>Tribeni Tissues Vidyapith | Percentage: 90.3</span>
+                </li>
+              </ul>
+            </article>
+            <article class="cert-card glass reveal">
+              <h3>Certifications and Achievements</h3>
+              <ul class="cert-list">
+                <li>
+                  <strong>SAP S/4HANA Development Program</strong>
+                  <span>Enterprise development certification</span>
+                </li>
+                <li>
+                  <strong>NPTEL Course Certifications</strong>
+                  <span
+                    >Programming in Java, E-Business, Introduction to Machine
+                    Learning</span
+                  >
+                </li>
+                <li>
+                  <strong>Coding Competition Winner</strong>
+                  <span>Won intra-college problem-solving competitions</span>
+                </li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="contact">
+        <div class="wrap">
+          <div class="contact-panel glass reveal">
+            <div>
+              <span class="kicker">Contact</span>
+              <h2>Let us build something useful.</h2>
+              <p class="lead">
+                Open to full stack roles, project collaborations, and
+                engineering conversations around backend systems, web apps, and
+                applied machine learning.
+              </p>
+            </div>
+            <ul class="contact-links">
+              <li>
+                <a href="mailto:aneeshghosh80@gmail.com"
+                  ><span>Email</span><strong>aneeshghosh80@gmail.com</strong></a
+                >
+              </li>
+              <li>
+                <a href="tel:+919123805454"
+                  ><span>Phone</span><strong>+91 9123805454</strong></a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://www.linkedin.com/in/aneesh-ghosh-oct13/"
+                  target="_blank"
+                  rel="noreferrer"
+                  ><span>LinkedIn</span><strong>aneesh-ghosh-oct13</strong></a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://github.com/levianeesh"
+                  target="_blank"
+                  rel="noreferrer"
+                  ><span>GitHub</span><strong>github.com/levianeesh</strong></a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://www.google.com/maps/search/?api=1&query=Kolkata%2C%20India"
+                  target="_blank"
+                  rel="noreferrer"
+                  ><span>Location</span><strong>Kolkata, India</strong></a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="wrap">
+        Designed and built as a single-file portfolio for Aneesh Ghosh.
+      </div>
+    </footer>
+
+    <script>
+      const header = document.querySelector(".site-header");
+      const menuToggle = document.querySelector(".menu-toggle");
+      const navLinks = document.querySelector(".nav-links");
+      const revealItems = document.querySelectorAll(".reveal");
+      const skillCards = document.querySelectorAll(".skill-card");
+
+      const setHeader = () => {
+        header.classList.toggle("scrolled", window.scrollY > 18);
+      };
+
+      window.addEventListener("scroll", setHeader, { passive: true });
+      setHeader();
+
+      menuToggle.addEventListener("click", () => {
+        const isOpen = navLinks.classList.toggle("open");
+        menuToggle.classList.toggle("active", isOpen);
+        menuToggle.setAttribute("aria-expanded", String(isOpen));
+      });
+
+      navLinks.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          navLinks.classList.remove("open");
+          menuToggle.classList.remove("active");
+          menuToggle.setAttribute("aria-expanded", "false");
+        });
+      });
+
+      const revealObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add("visible");
+            revealObserver.unobserve(entry.target);
+          });
+        },
+        { threshold: 0.16 },
+      );
+
+      revealItems.forEach((item, index) => {
+        item.style.transitionDelay = `${Math.min(index % 4, 3) * 80}ms`;
+        revealObserver.observe(item);
+      });
+
+      const skillObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            const card = entry.target;
+            const bar = card.querySelector(".bar span");
+            bar.style.width = `${card.dataset.skill}%`;
+            skillObserver.unobserve(card);
+          });
+        },
+        { threshold: 0.45 },
+      );
+
+      skillCards.forEach((card) => skillObserver.observe(card));
+
+      const canvas = document.getElementById("hero-canvas");
+      const ctx = canvas.getContext("2d");
+      let particles = [];
+      let mouse = { x: 0, y: 0, active: false };
+
+      const colors = ["#a879ff", "#42d4ff", "#72f2b5", "#ff6f91"];
+
+      function resizeCanvas() {
+        const ratio = Math.min(window.devicePixelRatio || 1, 2);
+        canvas.width = Math.floor(canvas.offsetWidth * ratio);
+        canvas.height = Math.floor(canvas.offsetHeight * ratio);
+        ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+        const count = Math.round(
+          Math.min(86, Math.max(36, canvas.offsetWidth / 15)),
+        );
+        particles = Array.from({ length: count }, () => ({
+          x: Math.random() * canvas.offsetWidth,
+          y: Math.random() * canvas.offsetHeight,
+          vx: (Math.random() - 0.5) * 0.36,
+          vy: (Math.random() - 0.5) * 0.36,
+          r: Math.random() * 1.8 + 0.8,
+          c: colors[Math.floor(Math.random() * colors.length)],
+        }));
+      }
+
+      function drawCanvas() {
+        ctx.clearRect(0, 0, canvas.offsetWidth, canvas.offsetHeight);
+        particles.forEach((p, i) => {
+          p.x += p.vx;
+          p.y += p.vy;
+          if (p.x < 0 || p.x > canvas.offsetWidth) p.vx *= -1;
+          if (p.y < 0 || p.y > canvas.offsetHeight) p.vy *= -1;
+
+          if (mouse.active) {
+            const dx = mouse.x - p.x;
+            const dy = mouse.y - p.y;
+            const dist = Math.hypot(dx, dy);
+            if (dist < 150) {
+              p.x -= dx * 0.002;
+              p.y -= dy * 0.002;
+            }
+          }
+
+          ctx.beginPath();
+          ctx.fillStyle = p.c;
+          ctx.globalAlpha = 0.58;
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fill();
+
+          for (let j = i + 1; j < particles.length; j++) {
+            const q = particles[j];
+            const dist = Math.hypot(p.x - q.x, p.y - q.y);
+            if (dist < 118) {
+              ctx.beginPath();
+              ctx.strokeStyle = p.c;
+              ctx.globalAlpha = (1 - dist / 118) * 0.22;
+              ctx.lineWidth = 1;
+              ctx.moveTo(p.x, p.y);
+              ctx.lineTo(q.x, q.y);
+              ctx.stroke();
+            }
+          }
+        });
+        ctx.globalAlpha = 1;
+        requestAnimationFrame(drawCanvas);
+      }
+
+      window.addEventListener("resize", resizeCanvas);
+      window.addEventListener(
+        "pointermove",
+        (event) => {
+          const rect = canvas.getBoundingClientRect();
+          mouse = {
+            x: event.clientX - rect.left,
+            y: event.clientY - rect.top,
+            active: true,
+          };
+        },
+        { passive: true },
+      );
+      window.addEventListener("pointerleave", () => {
+        mouse.active = false;
+      });
+
+      resizeCanvas();
+      drawCanvas();
+    </script>
+  </body>
+</html>
